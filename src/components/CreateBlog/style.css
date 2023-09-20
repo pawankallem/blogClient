@@ -1,0 +1,68 @@
+
+.create-blog-container {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-blog {
+    border: 2px solid gray;
+    border-radius: 10px;
+    opacity: 0.8;
+    width: 70vw;
+    height: 50%;
+    margin: auto;
+    padding: 10px;
+}
+
+.form-container {
+    height: 100%;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.create-title {
+    height: 30px;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+.create-content {
+    border-radius: 10px;
+    padding:10px;
+}
+.create-image {
+    padding:10px;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-button {
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    border: 1px solid transparent;
+    font-weight: 600;
+}
