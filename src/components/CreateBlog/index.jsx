@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 export const CreateBlog = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -27,12 +29,11 @@ export const CreateBlog = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // You can handle form submission here, including sending data to a server.
-
-    // Example: Logging the form data to the console
     console.log("Title:", formData.title);
     console.log("Content:", formData.content);
     console.log("Image:", formData.image);
+
+    navigate("/");
   };
 
   return (
@@ -71,7 +72,6 @@ export const CreateBlog = () => {
               name="image"
               accept="image/*"
               onChange={handleImageChange}
-              required
               className="create-image"
             />
           </div>

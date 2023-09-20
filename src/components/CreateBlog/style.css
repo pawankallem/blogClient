@@ -29,6 +29,7 @@
 
 .create-title {
     height: 30px;
+    width: 100%;
     border-radius: 10px;
     padding: 0 10px;
 }
@@ -65,4 +66,10 @@
     width: 150px;
     border: 1px solid transparent;
     font-weight: 600;
+}
+
+@media only screen and (max-width: 600px) {
+    .create-blog {
+        width: 100%;
+    }
 }
