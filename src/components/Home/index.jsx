@@ -1,14 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
-  const handleNavigate = () => {
-    navigate("/posts/" + 1, {
+  const handleNavigate = (elem) => {
+    navigate("/posts/" + elem._id, {
       state: {
-        title: "ABC title",
-        img: "https://img.freepik.com/free-photo/colorful-bird-with-yellow-beak-sits-pink-flower_1340-38643.jpg",
+        title: elem.title,
+        content: elem.content,
+        img: elem.image,
       },
     });
   };
@@ -17,18 +21,35 @@ export const Home = () => {
     navigate("/create-blog");
   };
 
-  const showContent = () => {
+  const showContent = (elem) => {
     return (
-      <div className="blog-image" onClick={handleNavigate}>
-        <div className="blog-title">ABC title</div>
-        <img
-          className="image"
-          src="https://img.freepik.com/free-photo/colorful-bird-with-yellow-beak-sits-pink-flower_1340-38643.jpg"
-          alt="blog-image"
-        />
+      <div
+        className="blog-image"
+        key={elem._id}
+        onClick={() => handleNavigate(elem)}
+      >
+        <div className="blog-title">{elem.title}</div>
+        {elem.image && (
+          <img className="image" src={elem.image} alt="blog-image" />
+        )}
       </div>
     );
   };
+
+  const handleGetData = async (req, res) => {
+    try {
+      const res = await axios.get(
+        "https://posts-server-4ra7.onrender.com/posts/all"
+      );
+      setData(res.data);
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
 
   return (
     <div className="home-container">
@@ -41,13 +62,9 @@ export const Home = () => {
         </div>
       </div>
       <div className="content">
-        {showContent()}
-        {showContent()}
-        {showContent()}
-        {showContent()}
-        {showContent()}
-        {showContent()}
-        {showContent()}
+        {data.map((elem) => {
+          return showContent(elem);
+        })}
       </div>
     </div>
   );
